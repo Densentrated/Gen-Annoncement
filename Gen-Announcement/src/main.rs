@@ -81,3 +81,10 @@ fn set_greeting() -> &'static str {
 
     return greeting_list[today_index];
 }
+
+// divide and conquer (designated robot drivers)
+// attendnace sheet
+// post meetings summary
+// have peoplew slpit into code and mech
+// get goals for the meeting
+// someone designated ()
