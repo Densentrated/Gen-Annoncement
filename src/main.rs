@@ -1,37 +1,41 @@
 use clap::Parser;
 use rand::Rng;
+use chrono::prelude::*;
+
 
 #[derive(Parser, Debug)]
 #[command(author, version)]
 struct Args {
-    #[arg(long)]
+    #[arg(short, long, default_value = "November 12 (Wednesday))")]
     date: String,
 
-    #[arg(long)]
+    #[arg(short, long, default_value = "3:00 to 4:30")]
     time: String,
 
-    #[arg(long, default_value = "")]
+    #[arg(short, long, default_value = "")]
     extra: String, 
 }
 
 
 fn main() {
     let args = Args::parse();
-    let greeting = set_greeting();
+    let greeting = make_greeting();
 
     println!("{}", greeting);
     println!("we have a meeting from {} on {}", args.time, args.date);
     println!("{}", args.extra);
 }
 
-fn set_greeting() -> &'static str {
+fn make_greeting() -> &'static str {
+
+    // the list of greetings
     let greeting_list = 
     [        
         "Bonjour, morning!",
         "YeeHaw, my friends!",
         "Morning, Govna's!",
         "Top of the morning to you all!",
-        "What's up, docs and dudettes?",
+        "What's up, docs?",
         "Greetings and salutations, folks!",
         "Rise and shine, everyone!",
         "Howdy-doody, y'all!",
@@ -75,16 +79,11 @@ fn set_greeting() -> &'static str {
         "How's the world lookin' from your side?",
         "Time to ignite your day, early birds!",
         "Hello, sunshine adventurers!",
-        "Embrace the day, morning explorers!",];
+        "Embrace the day, morning explorers!",
+    ];
+    // picks a random greeting from the list and returns it
     let mut rng = rand::thread_rng();
     let today_index = rng.gen_range(0..greeting_list.len());
-
     return greeting_list[today_index];
 }
 
-// divide and conquer (designated robot drivers)
-// attendnace sheet
-// post meetings summary
-// have peoplew slpit into code and mech
-// get goals for the meeting
-// someone designated ()
